@@ -1,4 +1,5 @@
 import { ADD_ARTICLE } from "../constants/action-types";
+import {restCallArticles} from "../../modules/RestCaller";
 
 const initialState = {
     articles: []

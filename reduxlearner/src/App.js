@@ -1,34 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
-import store from './js/store/index'
+import NewsList from './modules/NewsList';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import {restCallArticles} from './modules/RestCaller';
+
+const mapStateToProps = state => {
+  return { articles: state.articles };
+};
 
 class App extends Component {
 
-componentWillMount(){
-  axios
-  .get("http://localhost:8080/Blogify/api/posts")
-  .then(function(response) {
-    response.data._embedded.posts.map(obj => {
-      console.log(obj.title + "  "+obj.desc);
-    })
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+  constructor() {
+    super();
+    this.state = {
+      list: ""
+    };
+  }
+
+componentDidMount(){
+  restCallArticles();
+  console.log("Hello world.");
 }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          
-        </p>
+      <Grid container spacing={24}>
+      <Grid item xs={2}>
+          <Paper className="test">
+            <p className="av_name">Daryoush Farsimadan</p>
+          </Paper>
+        </Grid>
+        <Grid  direction="column" justify="space-between" className="articles" item xs={6} >
+          <NewsList/>
+        </Grid>
+      </Grid>
       </div>
     );
   }

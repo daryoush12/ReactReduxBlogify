@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+    background-color: #BFC4C4;
+    height: 100vh;
+    width: 100vw;
 }
 
 .App-logo {
@@ -20,6 +23,37 @@
 
 .App-intro {
   font-size: large;
+}
+.app_article{
+
+margin: 20px;
+padding: 20px;
+
+}
+
+.articles{
+  height: 100vh;
+}
+
+.grid_title{
+  width: 400px;
+  
+}
+
+.grid_date{
+ 
+  width: 200px;
+}
+
+.test{
+  margin: 20px;
+  padding: 20px;
+}
+
+.av_name{
+  border: 0;
+  border-bottom: 1px solid #eee;
+  margin: 20px 0;
 }
 
 @keyframes App-logo-spin {
