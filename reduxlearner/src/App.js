@@ -3,40 +3,29 @@ import './App.css';
 import NewsList from './modules/NewsList';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import {restCallArticles} from './modules/RestCaller';
+import {restCallArticles,restCallArticlebyId} from './modules/RestCaller';
+import { BrowserRouter as Router, Route, Link, AppLayout } from "react-router-dom";
+import Blog from './blog';
+import blogs from './blogs';
+import store from './js/store/index'
+import NewsArticle from './modules/NewsArticle';
 
-const mapStateToProps = state => {
-  return { articles: state.articles };
-};
 
 class App extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      list: ""
-    };
-  }
-
 componentDidMount(){
   restCallArticles();
-  console.log("Hello world.");
+  restCallArticlebyId(37);
 }
 
   render() {
     return (
-      <div className="App">
-      <Grid container spacing={24}>
-      <Grid item xs={2}>
-          <Paper className="test">
-            <p className="av_name">Daryoush Farsimadan</p>
-          </Paper>
-        </Grid>
-        <Grid  direction="column" justify="space-between" className="articles" item xs={6} >
-          <NewsList/>
-        </Grid>
-      </Grid>
+      <Router>
+        <div>
+      <Route exact path="/" component={blogs}/>
+      <Route path="/blogs/:id" component={NewsArticle}/>
       </div>
+      </Router>
     );
   }
 }

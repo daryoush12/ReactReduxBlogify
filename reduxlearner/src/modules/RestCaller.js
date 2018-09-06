@@ -7,7 +7,7 @@ export const restCallArticles = () => {
     .get("http://localhost:8080/Blogify/api/posts")
     .then(function(response) {
       response.data._embedded.posts.map(obj => {
-      store.dispatch((addArticle({id: obj.id, title: obj.title, date: obj.date, imageurl: ("http://localhost:8080/Blogify/images/"+obj.imageUrl)})))    
+      store.dispatch((addArticle({id: obj.id, title: obj.title,content: obj.content, date: obj.date, imageurl: ("http://localhost:8080/Blogify/images/"+obj.imageUrl)})))    
       })
     })
     .catch(function(error) {
@@ -16,6 +16,12 @@ export const restCallArticles = () => {
 }
 
 export const restCallArticlebyId = (id) => {
-    console.log(id);
+  axios
+  .get("http://localhost:8080/Blogify/api/posts/"+id)
+  .then(function(response) {
+    console.log("Success! : "+response.data.title);
+  })
+  .catch(function(error) {1
+    console.log(error);
+  });
 }
-
